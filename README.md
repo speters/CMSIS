@@ -1,4 +1,0 @@
-CMSIS
-=====
-
-CMSIS
