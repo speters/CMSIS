@@ -1,12 +1,11 @@
 /* Generated Linker Script file */
 /*
- * Template Version 1.0 dated 11 Oct 2012
+ * Template Version 1.1 dated 26 Aug 2013
  */
 
 OUTPUT_FORMAT("elf32-littlearm")
 OUTPUT_ARCH(arm)
 ENTRY(__Xmc4500_reset_cortex_m)
-GROUP(-lxmclibcstubs)
 
 MEMORY
 {
@@ -101,6 +100,13 @@ SECTIONS
 	{
 		*DMA_Descriptors.o (COMMON);
 	} > DSRAM_2_comm
+
+        /* Special section for USB buffers - Must NECESSARILY be in DSRAM-1 */
+        USB_RAM :
+        {
+
+        } > DSRAM_1_system
+
 
 	/* BSS section */
 	.bss : 

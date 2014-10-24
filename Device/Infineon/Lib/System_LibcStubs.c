@@ -2,10 +2,10 @@
 /**
 * @file     System_LibcStubs.c
 *           XMC4000 Device Series
-* @version  V1.2
-* @date     Oct 2012
+* @version  V1.3
+* @date     Jan 2014
 *
-Copyright (C) 2012 Infineon Technologies AG. All rights reserved.
+* Copyright (C) 2012-2014 Infineon Technologies AG. All rights reserved.
 *
 *
 * @par
@@ -29,6 +29,9 @@ Copyright (C) 2012 Infineon Technologies AG. All rights reserved.
    3. Prakash Kalanjeri Balasubramanian , V1.1 , C++ support
    3. Prakash Kalanjeri Balasubramanian , V1.2 , Restored compatibilty with old
                                                  project files
+   4. Prakash Kalanjeri Balasubramanian, V1.3 ,  Encapsulating everything in
+                                                 this file for use only with
+                                                 GCC
    ========================================================================= */
 
 /*
@@ -39,6 +42,7 @@ Copyright (C) 2012 Infineon Technologies AG. All rights reserved.
  * developers to override the provided implementation and define a final
  * implementation for their platforms.
  */
+#if   defined ( __GNUC__ )
 
 #include <sys/stat.h>
 #include <sys/times.h>
@@ -246,3 +250,5 @@ __attribute__((weak)) int _isatty(int file)
 /* ================================= C++ =================================== */
 /* ========================================================================= */
 void *__dso_handle = (void *)0;
+
+#endif /* __GNUC__ */

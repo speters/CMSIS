@@ -24,11 +24,11 @@ Copyright (C) 2011-2013 Infineon Technologies AG. All rights reserved.
  * @brief    CMSIS Cortex-M0 Peripheral Access Layer Header File for
  *           XMC1300 from Infineon.
  *
- * @version  V1.0.6 (Reference Manual v1.0)
- * @date     19. July 2013
+ * @version  V1.0.7 (Reference Manual v1.0)
+ * @date     24. January 2014
  *
  * @note     Generated with SVDConv V2.78b 
- *           from CMSIS SVD File 'XMC1300_Processed_SVD.xml' Version 1.0.6 (Reference Manual v1.0),
+ *           from CMSIS SVD File 'XMC1300_Processed_SVD.xml' Version 1.0.7 (Reference Manual v1.0),
  *******************************************************************************************************/
 
 
@@ -1478,8 +1478,6 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define MATH_DIVCON_STMODE_Msk                (0x01UL << MATH_DIVCON_STMODE_Pos)                      /*!< MATH DIVCON: STMODE Mask                */
 #define MATH_DIVCON_USIGN_Pos                 2                                                       /*!< MATH DIVCON: USIGN Position             */
 #define MATH_DIVCON_USIGN_Msk                 (0x01UL << MATH_DIVCON_USIGN_Pos)                       /*!< MATH DIVCON: USIGN Mask                 */
-#define MATH_DIVCON_DIVMODE_Pos               3                                                       /*!< MATH DIVCON: DIVMODE Position           */
-#define MATH_DIVCON_DIVMODE_Msk               (0x03UL << MATH_DIVCON_DIVMODE_Pos)                     /*!< MATH DIVCON: DIVMODE Mask               */
 #define MATH_DIVCON_QSCNT_Pos                 8                                                       /*!< MATH DIVCON: QSCNT Position             */
 #define MATH_DIVCON_QSCNT_Msk                 (0x1fUL << MATH_DIVCON_QSCNT_Pos)                       /*!< MATH DIVCON: QSCNT Mask                 */
 #define MATH_DIVCON_QSDIR_Pos                 15                                                      /*!< MATH DIVCON: QSDIR Position             */
@@ -1544,6 +1542,12 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 
 
 /* ---------------------------------  PAU_AVAIL0  --------------------------------- */
+#define PAU_AVAIL0_AVAIL5_Pos                 5                                                       /*!< PAU AVAIL0: AVAIL5 Position             */
+#define PAU_AVAIL0_AVAIL5_Msk                 (0x01UL << PAU_AVAIL0_AVAIL5_Pos)                       /*!< PAU AVAIL0: AVAIL5 Mask                 */
+#define PAU_AVAIL0_AVAIL6_Pos                 6                                                       /*!< PAU AVAIL0: AVAIL6 Position             */
+#define PAU_AVAIL0_AVAIL6_Msk                 (0x01UL << PAU_AVAIL0_AVAIL6_Pos)                       /*!< PAU AVAIL0: AVAIL6 Mask                 */
+#define PAU_AVAIL0_AVAIL7_Pos                 7                                                       /*!< PAU AVAIL0: AVAIL7 Position             */
+#define PAU_AVAIL0_AVAIL7_Msk                 (0x01UL << PAU_AVAIL0_AVAIL7_Pos)                       /*!< PAU AVAIL0: AVAIL7 Mask                 */
 #define PAU_AVAIL0_AVAIL20_Pos                20                                                      /*!< PAU AVAIL0: AVAIL20 Position            */
 #define PAU_AVAIL0_AVAIL20_Msk                (0x01UL << PAU_AVAIL0_AVAIL20_Pos)                      /*!< PAU AVAIL0: AVAIL20 Mask                */
 #define PAU_AVAIL0_AVAIL21_Pos                21                                                      /*!< PAU AVAIL0: AVAIL21 Position            */
@@ -6386,6 +6390,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_OUT_P4_Msk                      (0x01UL << PORT1_OUT_P4_Pos)                            /*!< PORT1 OUT: P4 Mask                      */
 #define PORT1_OUT_P5_Pos                      5                                                       /*!< PORT1 OUT: P5 Position                  */
 #define PORT1_OUT_P5_Msk                      (0x01UL << PORT1_OUT_P5_Pos)                            /*!< PORT1 OUT: P5 Mask                      */
+#define PORT1_OUT_P6_Pos                      6                                                       /*!< PORT1 OUT: P6 Position                  */
+#define PORT1_OUT_P6_Msk                      (0x01UL << PORT1_OUT_P6_Pos)                            /*!< PORT1 OUT: P6 Mask                      */
 
 /* ----------------------------------  PORT1_OMR  --------------------------------- */
 #define PORT1_OMR_PS0_Pos                     0                                                       /*!< PORT1 OMR: PS0 Position                 */
@@ -6400,6 +6406,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_OMR_PS4_Msk                     (0x01UL << PORT1_OMR_PS4_Pos)                           /*!< PORT1 OMR: PS4 Mask                     */
 #define PORT1_OMR_PS5_Pos                     5                                                       /*!< PORT1 OMR: PS5 Position                 */
 #define PORT1_OMR_PS5_Msk                     (0x01UL << PORT1_OMR_PS5_Pos)                           /*!< PORT1 OMR: PS5 Mask                     */
+#define PORT1_OMR_PS6_Pos                     6                                                       /*!< PORT1 OMR: PS6 Position                 */
+#define PORT1_OMR_PS6_Msk                     (0x01UL << PORT1_OMR_PS6_Pos)                           /*!< PORT1 OMR: PS6 Mask                     */
 #define PORT1_OMR_PR0_Pos                     16                                                      /*!< PORT1 OMR: PR0 Position                 */
 #define PORT1_OMR_PR0_Msk                     (0x01UL << PORT1_OMR_PR0_Pos)                           /*!< PORT1 OMR: PR0 Mask                     */
 #define PORT1_OMR_PR1_Pos                     17                                                      /*!< PORT1 OMR: PR1 Position                 */
@@ -6412,6 +6420,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_OMR_PR4_Msk                     (0x01UL << PORT1_OMR_PR4_Pos)                           /*!< PORT1 OMR: PR4 Mask                     */
 #define PORT1_OMR_PR5_Pos                     21                                                      /*!< PORT1 OMR: PR5 Position                 */
 #define PORT1_OMR_PR5_Msk                     (0x01UL << PORT1_OMR_PR5_Pos)                           /*!< PORT1 OMR: PR5 Mask                     */
+#define PORT1_OMR_PR6_Pos                     22                                                      /*!< PORT1 OMR: PR6 Position                 */
+#define PORT1_OMR_PR6_Msk                     (0x01UL << PORT1_OMR_PR6_Pos)                           /*!< PORT1 OMR: PR6 Mask                     */
 
 /* ---------------------------------  PORT1_IOCR0  -------------------------------- */
 #define PORT1_IOCR0_PC0_Pos                   3                                                       /*!< PORT1 IOCR0: PC0 Position               */
@@ -6428,6 +6438,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_IOCR4_PC4_Msk                   (0x1fUL << PORT1_IOCR4_PC4_Pos)                         /*!< PORT1 IOCR4: PC4 Mask                   */
 #define PORT1_IOCR4_PC5_Pos                   11                                                      /*!< PORT1 IOCR4: PC5 Position               */
 #define PORT1_IOCR4_PC5_Msk                   (0x1fUL << PORT1_IOCR4_PC5_Pos)                         /*!< PORT1 IOCR4: PC5 Mask                   */
+#define PORT1_IOCR4_PC6_Pos                   19                                                      /*!< PORT1 IOCR4: PC6 Position               */
+#define PORT1_IOCR4_PC6_Msk                   (0x1fUL << PORT1_IOCR4_PC6_Pos)                         /*!< PORT1 IOCR4: PC6 Mask                   */
 
 /* ----------------------------------  PORT1_IN  ---------------------------------- */
 #define PORT1_IN_P0_Pos                       0                                                       /*!< PORT1 IN: P0 Position                   */
@@ -6442,6 +6454,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_IN_P4_Msk                       (0x01UL << PORT1_IN_P4_Pos)                             /*!< PORT1 IN: P4 Mask                       */
 #define PORT1_IN_P5_Pos                       5                                                       /*!< PORT1 IN: P5 Position                   */
 #define PORT1_IN_P5_Msk                       (0x01UL << PORT1_IN_P5_Pos)                             /*!< PORT1 IN: P5 Mask                       */
+#define PORT1_IN_P6_Pos                       6                                                       /*!< PORT1 IN: P6 Position                   */
+#define PORT1_IN_P6_Msk                       (0x01UL << PORT1_IN_P6_Pos)                             /*!< PORT1 IN: P6 Mask                       */
 
 /* ---------------------------------  PORT1_PHCR0  -------------------------------- */
 #define PORT1_PHCR0_PH0_Pos                   2                                                       /*!< PORT1 PHCR0: PH0 Position               */
@@ -6456,6 +6470,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_PHCR0_PH4_Msk                   (0x01UL << PORT1_PHCR0_PH4_Pos)                         /*!< PORT1 PHCR0: PH4 Mask                   */
 #define PORT1_PHCR0_PH5_Pos                   22                                                      /*!< PORT1 PHCR0: PH5 Position               */
 #define PORT1_PHCR0_PH5_Msk                   (0x01UL << PORT1_PHCR0_PH5_Pos)                         /*!< PORT1 PHCR0: PH5 Mask                   */
+#define PORT1_PHCR0_PH6_Pos                   26                                                      /*!< PORT1 PHCR0: PH6 Position               */
+#define PORT1_PHCR0_PH6_Msk                   (0x01UL << PORT1_PHCR0_PH6_Pos)                         /*!< PORT1 PHCR0: PH6 Mask                   */
 
 /* ---------------------------------  PORT1_PDISC  -------------------------------- */
 #define PORT1_PDISC_PDIS0_Pos                 0                                                       /*!< PORT1 PDISC: PDIS0 Position             */
@@ -6470,6 +6486,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_PDISC_PDIS4_Msk                 (0x01UL << PORT1_PDISC_PDIS4_Pos)                       /*!< PORT1 PDISC: PDIS4 Mask                 */
 #define PORT1_PDISC_PDIS5_Pos                 5                                                       /*!< PORT1 PDISC: PDIS5 Position             */
 #define PORT1_PDISC_PDIS5_Msk                 (0x01UL << PORT1_PDISC_PDIS5_Pos)                       /*!< PORT1 PDISC: PDIS5 Mask                 */
+#define PORT1_PDISC_PDIS6_Pos                 6                                                       /*!< PORT1 PDISC: PDIS6 Position             */
+#define PORT1_PDISC_PDIS6_Msk                 (0x01UL << PORT1_PDISC_PDIS6_Pos)                       /*!< PORT1 PDISC: PDIS6 Mask                 */
 
 /* ----------------------------------  PORT1_PPS  --------------------------------- */
 #define PORT1_PPS_PPS0_Pos                    0                                                       /*!< PORT1 PPS: PPS0 Position                */
@@ -6484,6 +6502,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_PPS_PPS4_Msk                    (0x01UL << PORT1_PPS_PPS4_Pos)                          /*!< PORT1 PPS: PPS4 Mask                    */
 #define PORT1_PPS_PPS5_Pos                    5                                                       /*!< PORT1 PPS: PPS5 Position                */
 #define PORT1_PPS_PPS5_Msk                    (0x01UL << PORT1_PPS_PPS5_Pos)                          /*!< PORT1 PPS: PPS5 Mask                    */
+#define PORT1_PPS_PPS6_Pos                    6                                                       /*!< PORT1 PPS: PPS6 Position                */
+#define PORT1_PPS_PPS6_Msk                    (0x01UL << PORT1_PPS_PPS6_Pos)                          /*!< PORT1 PPS: PPS6 Mask                    */
 
 /* ---------------------------------  PORT1_HWSEL  -------------------------------- */
 #define PORT1_HWSEL_HW0_Pos                   0                                                       /*!< PORT1 HWSEL: HW0 Position               */
@@ -6498,6 +6518,8 @@ typedef struct {                                    /*!< (@ 0x40040200) PORT2 St
 #define PORT1_HWSEL_HW4_Msk                   (0x03UL << PORT1_HWSEL_HW4_Pos)                         /*!< PORT1 HWSEL: HW4 Mask                   */
 #define PORT1_HWSEL_HW5_Pos                   10                                                      /*!< PORT1 HWSEL: HW5 Position               */
 #define PORT1_HWSEL_HW5_Msk                   (0x03UL << PORT1_HWSEL_HW5_Pos)                         /*!< PORT1 HWSEL: HW5 Mask                   */
+#define PORT1_HWSEL_HW6_Pos                   12                                                      /*!< PORT1 HWSEL: HW6 Position               */
+#define PORT1_HWSEL_HW6_Msk                   (0x03UL << PORT1_HWSEL_HW6_Pos)                         /*!< PORT1 HWSEL: HW6 Mask                   */
 
 
 /* ================================================================================ */

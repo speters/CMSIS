@@ -2,10 +2,10 @@
 /**
 * @file     uc_id.h
 *           Infineon XMC Device Series
-* @version  V1.3
-* @date     18 Feb 2013
+* @version  V1.4
+* @date     20 Feb 2014
 *
-Copyright (C) 2013 Infineon Technologies AG. All rights reserved.
+Copyright (C) 2014 Infineon Technologies AG. All rights reserved.
 *
 *
 * @par
@@ -28,12 +28,18 @@ V1.0, 25 Jan 2013, PKB, First version with XMC4 devices
 V1.1, 12 Feb 2013, RD, Addition of XMC1 devices
 V1.2, 13 Feb 2013, RD, Support for TARGET_DEVICE
 V1.3, 18 Feb 2013, RD, Updated Package definitions
+V1.4, 20 Feb 2014, JFT, Fix STEP and PACKAGE definitions, issue with octal numbers
+V1.5, 18 Feb 2014, RD, Addition of RTE file inclusion, VQFN support
 *****************************************************************************/
 #ifndef __UCID_H__
 #define __UCID_H__
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#ifdef _RTE_
+#include “RTE_Components.h”
 #endif
 
 /* ***************************************************************************
@@ -73,24 +79,25 @@ extern "C" {
 #define    XMC1100    (1100)
 
 /* STEP definitions    */
-#define    STEP_AA    (01)
-#define    STEP_AB    (02)
-#define    STEP_AC    (03)
-#define    STEP_BA    (04)
-#define    STEP_BB    (05)
-#define    STEP_BC    (06)
+#define    STEP_AA    (1)
+#define    STEP_AB    (2)
+#define    STEP_AC    (3)
+#define    STEP_BA    (4)
+#define    STEP_BB    (5)
+#define    STEP_BC    (6)
 
 /* Package definitions */
-#define    BGA144     (01)
-#define    LQFP144    (02)
-#define    LQFP100    (03)
-#define    BGA64      (04)
-#define    LQFP64     (05)
-#define    VQFN48     (06)
-#define    TSSOP38    (07)
-#define    TSSOP28    (08)
-#define    TSSOP16    (09) 
+#define    BGA144     (1)
+#define    LQFP144    (2)
+#define    LQFP100    (3)
+#define    BGA64      (4)
+#define    LQFP64     (5)
+#define    VQFN48     (6)
+#define    TSSOP38    (7)
+#define    TSSOP28    (8)
+#define    TSSOP16    (9) 
 #define    VQFN24     (10)
+#define    VQFN40     (11)
 
 /************************* End of ID definitions ************************** */
 
@@ -352,6 +359,13 @@ extern "C" {
 #define UC_STEP      STEP_AB
 #define UC_PACKAGE   VQFN48
 
+#elif (UC_ID == 4202086)      /* SW ID : 42.0208.6 */
+#define UC_FAMILY    XMC4
+#define UC_SERIES    XMC41
+#define UC_DEVICE    XMC4108
+#define UC_STEP      STEP_AB
+#define UC_PACKAGE   VQFN48
+
 /* **************** Start of section for XMC13 devices ****************** */
 #elif (UC_ID == 1301017)       /* SW ID : 13.0101.7 */
 #define UC_FAMILY    XMC1
@@ -367,6 +381,20 @@ extern "C" {
 #define UC_STEP      STEP_AA
 #define UC_PACKAGE   TSSOP16
 
+#elif (UC_ID == 13010110)      /* SW ID : 13.0101.10 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC13
+#define UC_DEVICE    XMC1301
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN24
+
+#elif (UC_ID == 13010111)      /* SW ID : 13.0101.11 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC13
+#define UC_DEVICE    XMC1301
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN40
+
 #elif (UC_ID == 1301027)      /* SW ID : 13.0102.7 */
 #define UC_FAMILY    XMC1
 #define UC_SERIES    XMC13
@@ -374,12 +402,26 @@ extern "C" {
 #define UC_STEP      STEP_AA
 #define UC_PACKAGE   TSSOP38
 
+#elif (UC_ID == 1301029)       /* SW ID : 13.0102.9 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC13
+#define UC_DEVICE    XMC1302
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   TSSOP16
+
 #elif (UC_ID == 13010210)      /* SW ID : 13.0102.10 */
 #define UC_FAMILY    XMC1
 #define UC_SERIES    XMC13
 #define UC_DEVICE    XMC1302
 #define UC_STEP      STEP_AA
 #define UC_PACKAGE   VQFN24
+
+#elif (UC_ID == 13010211)      /* SW ID : 13.0102.11 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC13
+#define UC_DEVICE    XMC1302
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN40
 
 /* **************** Start of section for XMC12 devices ****************** */
 #elif (UC_ID == 1201007)      /* SW ID : 12.0100.7 */
@@ -403,6 +445,13 @@ extern "C" {
 #define UC_STEP      STEP_AA
 #define UC_PACKAGE   TSSOP28
 
+#elif (UC_ID == 12010111)       /* SW ID : 12.0101.11 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC12
+#define UC_DEVICE    XMC1201
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN40
+
 #elif (UC_ID == 1201027)      /* SW ID : 12.0102.7 */
 #define UC_FAMILY    XMC1
 #define UC_SERIES    XMC12
@@ -423,6 +472,20 @@ extern "C" {
 #define UC_DEVICE    XMC1202
 #define UC_STEP      STEP_AA
 #define UC_PACKAGE   TSSOP16
+
+#elif (UC_ID == 12010210)      /* SW ID : 12.0102.10 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC12
+#define UC_DEVICE    XMC1202
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN24
+
+#elif (UC_ID == 12010211)      /* SW ID : 12.0102.11 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC12
+#define UC_DEVICE    XMC1202
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN40
 
 #elif (UC_ID == 1201039)      /* SW ID : 12.0103.9 */
 #define UC_FAMILY    XMC1
@@ -452,6 +515,20 @@ extern "C" {
 #define UC_DEVICE    XMC1100
 #define UC_STEP      STEP_AA
 #define UC_PACKAGE   TSSOP16
+
+#elif (UC_ID == 11010010)      /* SW ID : 11.0100.10 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC11
+#define UC_DEVICE    XMC1100
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN24
+
+#elif (UC_ID == 11010011)      /* SW ID : 11.0100.11 */
+#define UC_FAMILY    XMC1
+#define UC_SERIES    XMC11
+#define UC_DEVICE    XMC1100
+#define UC_STEP      STEP_AA
+#define UC_PACKAGE   VQFN40
 
 #else
 #error "Unsupported XMC device"

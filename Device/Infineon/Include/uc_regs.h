@@ -2,10 +2,10 @@
 /**
 * @file     uc_regs.h
 *           Infineon XMC Device Series
-* @version  V1.1
-* @date     12 Feb 2013
+* @version  V1.2
+* @date     20 Feb 2014
 *
-Copyright (C) 2013 Infineon Technologies AG. All rights reserved.
+Copyright (C) 2014 Infineon Technologies AG. All rights reserved.
 *
 *
 * @par
@@ -26,6 +26,7 @@ Copyright (C) 2013 Infineon Technologies AG. All rights reserved.
 ************************* Version history ************************************
 V1.0, 25 Jan 2013, PKB, First version for XMC4 family
 V1.1, 12 Feb 2013, RD, Addition of XMC1 devices  
+V1.2, 20 Feb 2014, JFT, Fix path to header files
 *****************************************************************************/
 #ifndef __UCREGS_H__
 #define __UCREGS_H__
@@ -37,17 +38,17 @@ extern "C" {
 #include <uc_id.h>
 
 #if (UC_SERIES == XMC45)
-#include <XMC4500_series/Include/XMC4500.h>
+#include <XMC4500.h>
 #elif (UC_SERIES == XMC44)
-#include <XMC4400_series/Include/XMC4400.h>
+#include <XMC4400.h>
 #elif ((UC_SERIES == XMC42) ||(UC_SERIES == XMC41) )
-#include <XMC4200-4100_series/Include/XMC4200.h>
+#include <XMC4200.h>
 #elif (UC_SERIES == XMC11)
-#include <XMC1100_series/Include/XMC1100.h>
+#include <XMC1100.h>
 #elif (UC_SERIES == XMC12)
-#include <XMC1200_series/Include/XMC1200.h>
+#include <XMC1200.h>
 #elif (UC_SERIES == XMC13)
-#include <XMC1300_series/Include/XMC1300.h>
+#include <XMC1300.h>
 #else
 #error "Unsupported XMC family"
 #endif

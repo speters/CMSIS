@@ -1,12 +1,11 @@
 /* Generated Linker Script file */
 /*
- * Template Version 1.2 dated 19 Nov 2012
+ * Template Version 1.3 dated 26 Aug 2013
  */
 
 OUTPUT_FORMAT("elf32-littlearm")
 OUTPUT_ARCH(arm)
 ENTRY(__Xmc4400_reset_cortex_m)
-GROUP(-lxmclibcstubs)
 
 MEMORY
 {
@@ -110,6 +109,12 @@ SECTIONS
 	} > SRAM_combined
 	/* Yes, the size must be kept outside */
 	__Xmc4400_BSS_Size = __Xmc4400_eBSS - __Xmc4400_sBSS;
+
+        /* Special section for USB buffers - Must NECESSARILY be in DSRAM-1 */
+        USB_RAM ABSOLUTE(ORIGIN(DSRAM_1_system)): AT(ORIGIN(DSRAM_1_system))
+        {
+
+        } > SRAM_combined
 
 	/* Standard DATA and user defined DATA/BSS/CONST sections */
 	.data ABSOLUTE(ALIGN(16)): AT(eROData)

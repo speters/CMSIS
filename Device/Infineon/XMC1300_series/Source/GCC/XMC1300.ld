@@ -1,13 +1,11 @@
 /* Generated Linker Script file */
 /*
- * Template Version 1.3 dated 13 Dec 2012
- * Last modified: 18 July 2013
+ * Template Version 1.4 dated 26 Aug 2013
  */
 
 OUTPUT_FORMAT("elf32-littlearm")
 OUTPUT_ARCH(arm)
 ENTRY(__Xmc1300_reset_cortex_m)
-GROUP(-lxmc1libcstubs)
 
 MEMORY
 {

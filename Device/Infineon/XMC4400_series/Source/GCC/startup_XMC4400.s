@@ -4,18 +4,19 @@
 
 /* ********************* Version History *********************************** */
 /* ***************************************************************************
-V0.1 , Aug, 13, 2012 ES:  initial version
+V0.1,Aug, 13, 2012 ES: Initial version
 V0.2 , Oct, 12, 2012 PKB: C++ support
 V0.3 , Jan, 25, 2013 PKB: Prefetch bug workaround for STEP_AA
 V0.4 , Jul, 29, 2013 PKB: AAPCS violation in V0.3 fixed
+V0.5,Feb, 05, 2014 PKB:Removed redundant alignment code from copy+clear funcs   
 **************************************************************************** */
 /**
 * @file     Startup_XMC4400.s
 *           XMC4000 Device Series
-* @version  V0.4
-* @date     Jul 2013
+* @version  V0.5
+* @date     Feb 2014
 *
-Copyright (C) 2013 Infineon Technologies AG. All rights reserved.
+Copyright (C) 2014 Infineon Technologies AG. All rights reserved.
 *
 *
 * @par
@@ -278,13 +279,6 @@ __Xmc4400_reset_cortex_m:
    CMP R2,#0
    BEQ SKIPCOPY
    
-   /* For bytecount less than 4, at least 1 word must be copied */
-   CMP R2,#4
-   BCS STARTCOPY
-   
-   /* Byte count < 4 ; so bump it up */
-   MOV R2,#4
-
 STARTCOPY:
    /* 
       R2 contains byte count. Change it to word count. It is ensured in the 
@@ -310,13 +304,6 @@ SKIPCOPY:
    /* Find out if there are items assigned to BSS */   
    CMP R1,#0 
    BEQ SKIPCLEAR
-
-   /* At least 1 word must be copied */
-   CMP R1,#4
-   BCS STARTCLEAR
-   
-   /* Byte count < 4 ; so bump it up to a word*/
-   MOV R1,#4
 
 STARTCLEAR:
    LSR R1,R1,#2            /* BSS size in words */

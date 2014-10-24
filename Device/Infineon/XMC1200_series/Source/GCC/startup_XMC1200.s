@@ -12,14 +12,17 @@ V1.4, Dec, 13, 2012 PKB:Removed unwanted interrupts/veneers
 V1.5, Jan, 26, 2013 PKB:SSW clock support  
 V1.6, Feb, 13, 2013 PKB:Relative path to Device_Data.h  
 V1.7, Feb, 19, 2013 PKB:Included XMC1200_SCU.inc  
+V1.8, Jan, 24, 2014 PKB:Removed AllowClkInitStartup and DAVE Extended init
+V1.9, Feb, 05, 2014 PKB:Removed redundant alignment code from copy+clear funcs
+V1.10, Feb, 14, 2014 PKB:Added software_init_hook and hardware_init_hook
 **************************************************************************** */
 /**
 * @file     Startup_XMC1200.s
 *           XMC1200 Device Series
-* @version  V1.7
-* @date     Feb 2013
+* @version  V1.10
+* @date     Feb 2014
 *
-Copyright (C) 2013 Infineon Technologies AG. All rights reserved.
+Copyright (C) 2014 Infineon Technologies AG. All rights reserved.
 *
 *
 * @par
@@ -143,17 +146,11 @@ __Xmc1200_reset_cortex_m:
     LDR R0,=__Xmc1200_stack
     MOV SP,R0
 
-    /* Clock tree, External memory setup etc may be done here */    
-    LDR     R0, =SystemInit
+    /* Launch custom pre-program loading startup procedure */
+    LDR R0,=hardware_init_hook
     BLX     R0
 
-/* 
-   SystemInit_DAVE3() is provided by DAVE3 code generation engine. It is  
-   weakly defined here though for a potential override.
-*/
-    LDR     R0, =SystemInit_DAVE3 	
-    BLX     R0
-
+    /* Branch to the program loader */
     B       __Xmc1200_Program_Loader 
     
     .pool
@@ -178,13 +175,6 @@ __Xmc1200_reset_cortex_m:
    CMP R2,#0
    BEQ SKIPCOPY
    
-   /* For bytecount less than 4, at least 1 word must be copied */
-   CMP R2,#4
-   BCS STARTCOPY
-   
-   /* Byte count < 4 ; so bump it up */
-   MOVS R2,#4
-
 STARTCOPY:
    /* 
       R2 contains byte count. Change it to word count. It is ensured in the 
@@ -210,13 +200,6 @@ SKIPCOPY:
    /* Find out if there are items assigned to BSS */   
    CMP R1,#0 
    BEQ SKIPCLEAR
-
-   /* At least 1 word must be copied */
-   CMP R1,#4
-   BCS STARTCLEAR
-   
-   /* Byte count < 4 ; so bump it up to a word*/
-   MOVS R1,#4
 
 STARTCLEAR:
    LSRS R1,R1,#2            /* BSS size in words */
@@ -255,13 +238,18 @@ VENEERCOPYLOOP:
    B VENEERCOPYLOOP
     
 SKIPVENEERCOPY:
-   /* Update System Clock */
-   LDR R0,=SystemCoreClockUpdate
-   BLX R0
 
    /* Reset stack pointer before zipping off to user application, Optional */
    LDR R0,=__Xmc1200_stack 
    MOV SP,R0
+
+   /* Perform System Initialization */   
+   LDR R0,=SystemInit
+   BLX R0
+
+   /* Launch custom post-program loading startup procedure */
+   LDR R0,=software_init_hook
+   BLX R0
 
    MOVS R0,#0
    MOVS R1,#0
@@ -521,38 +509,26 @@ BCCU0_0_Veneer:
 /* ======================================================================== */
 
 /* ============= END OF INTERRUPT HANDLER DEFINITION ======================== */
-
-/* ===== Decision function queried by CMSIS startup for Clock tree setup === */
-/* In the absence of DAVE code engine, CMSIS SystemInit() must perform clock 
-   tree setup. 
-   
-   This decision routine defined here will always return TRUE.
-   
-   When overridden by a definition defined in DAVE code engine, this routine
-   returns FALSE indicating that the code engine has performed the clock setup
-*/   
      .section ".XmcStartup"
-    .weak   AllowClkInitByStartup
-    .type   AllowClkInitByStartup, %function
-AllowClkInitByStartup:
-    MOVS R0,#1
-    BX LR
-    .size   AllowClkInitByStartup, . - AllowClkInitByStartup
 
-/* ======  Definition of the default weak SystemInit_DAVE3 function =========
-If DAVE3 requires an extended SystemInit it will create its own version of
-SystemInit_DAVE3 which overrides this weak definition. Example includes
-setting up of external memory interfaces.
+ /* ======  Definition of the default weak software_init_hook function =========
+   Applications can customize their startup procedure by defining their version
+   of software_init_hook and hardware_init_hook. It must be expressly noted that access to 
+   global variables in hardware_init_hook is strictly prohibited because the program loading 
+   has not been started.
 */
-     .weak SystemInit_DAVE3
-     .type SystemInit_DAVE3, %function
-SystemInit_DAVE3:
+     .weak software_init_hook
+     .type software_init_hook, %function
+software_init_hook:
      NOP
      BX LR
-     .size SystemInit_DAVE3, . - SystemInit_DAVE3
-/* ======================================================================== */
-/* ======================================================================== */
+     .size software_init_hook, . - software_init_hook
 
-/* ======================== Data references =============================== */
+     .weak hardware_init_hook
+     .type hardware_init_hook, %function
+hardware_init_hook:
+     NOP
+     BX LR
+     .size hardware_init_hook, . - hardware_init_hook
 
     .end
